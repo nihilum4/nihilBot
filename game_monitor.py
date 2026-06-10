@@ -21,11 +21,14 @@ import difflib
 import hashlib
 import io
 import json
+import pathlib
 import re
 import sys
 import time
 import argparse
 import platform as _platform
+
+_here = pathlib.Path(__file__).parent
 
 import requests
 import pytesseract
@@ -105,7 +108,7 @@ UNKNOWN_CAT = {
 
 def load_events():
     try:
-        with open("events.json", encoding="utf-8") as f:
+        with open(_here / "events.json", encoding="utf-8") as f:
             events = json.load(f).get("events", [])
         # Pre-compile regex patterns
         for ev in events:
@@ -557,8 +560,8 @@ def main():
         stuck_notified = False
 
         text = read_text(img)
-        if not text:
-            # Bar cleared — allow the same event to notify again when it next appears
+        if not text or len(text.strip()) < 4:
+            # Bar cleared or OCR noise (single chars, partial frames) — reset key
             last_event_key = None
             time.sleep(config.POLL_INTERVAL)
             continue
@@ -577,9 +580,14 @@ def main():
             event_key = cat["id"]
 
         if event_key == last_event_key:
-            # Same event as the last notification — skip the repeat (countdown tick, recolor, etc.)
             time.sleep(config.POLL_INTERVAL)
             continue
+
+        # For unknowns, OCR varies slightly each poll — treat as repeat if text is similar enough
+        if cat["id"] == "unknown" and last_event_key is not None:
+            if _fuzzy_ratio(event_key, last_event_key) >= FUZZY_THRESHOLD:
+                time.sleep(config.POLL_INTERVAL)
+                continue
 
         last_event_key = event_key
         print(f"[{_ts()}] {text[:100]}")
