@@ -1,0 +1,977 @@
+{
+  "_comment": "Matching priority per event: 'pattern' (regex) → 'keywords' (substrings) → fuzzy match against 'effect' text. Patterns use '|' for OR and '.' to match any single char (handy where OCR may misread apostrophes/hyphens).",
+  "events": [
+    {
+      "name": "Exotic Ore Notif",
+      "pattern": "chill goes down|down your spine",
+      "effect": "A chill goes down your spine...",
+      "severity": "high"
+    },
+    {
+      "name": "Exquisite Ore Notif",
+      "pattern": "heart skips|skips a beat",
+      "effect": "Your heart skips a beat...",
+      "severity": "high"
+    },
+    {
+      "name": "Transcendent Ore Notif",
+      "pattern": "a ringing|ringing in your ears",
+      "effect": "You hear a ringing in your ears...",
+      "severity": "high"
+    },
+    {
+      "name": "Enigmatic Ore Notif",
+      "pattern": "vision begins|begins to blur",
+      "effect": "Your vision begins to blur...",
+      "severity": "high"
+    },
+    {
+      "name": "Mine Reset",
+      "pattern": "mine.*(reset|refresh)|reset.*mine",
+      "effect": "Mine capacity is refreshing",
+      "severity": "low"
+    },
+    {
+      "name": "Idolium Notif",
+      "pattern": "Polychromatic|fly all around|slowly lose control",
+      "effect": "Polychromatic lights fly all around you as you slowly lose control...",
+      "severity": "high"
+    },
+    {
+      "name": "Scribbal Notif",
+      "pattern": "Fiction|hold of reality",
+      "effect": "Fiction takes hold of reality...",
+      "severity": "high"
+    },
+    {
+      "name": "Terraromere Notif",
+      "pattern": "Verdant, glowing|pierce through",
+      "effect": "Verdant, glowing blades pierce through the rock around you...",
+      "severity": "high"
+    },
+    {
+      "name": "Endozivite Notif",
+      "pattern": "A colossal vortex|tears through",
+      "effect": "A colossal vortex tears through the air...",
+      "severity": "high"
+    },
+    {
+      "name": "Inclemetite Notif",
+      "pattern": "air thins out|frost begins|accumulate on every inch",
+      "effect": "The air thins out as frost begins to accumulate on every inch of your body...",
+      "severity": "high"
+    },
+    {
+      "name": "Illusory Bubblegram Notif",
+      "pattern": "your body lighten|as all light|loses its color",
+      "effect": "You feel your body lighten in the air as all light around you loses its color...",
+      "severity": "high"
+    },
+    {
+      "name": "Nyctophyte Notif",
+      "pattern": "The awakening of|terrible beast|dread into your",
+      "effect": "The awakening of a terrible beast strikes dread into your heart...",
+      "severity": "high"
+    },
+    {
+      "name": "Dynamo of Fate Notif",
+      "pattern": "Time comes|a standstill",
+      "effect": "Time comes to a standstill...",
+      "severity": "high"
+    },
+    {
+      "name": "Empress of Light Notif",
+      "pattern": "prismatic presence|primordial god|enchants the mine",
+      "effect": "The prismatic presence of a primordial god enchants the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "The Cylinder Notif",
+      "pattern": "perfect geometrical|weaves around",
+      "effect": "A perfect geometrical structure weaves around you...",
+      "severity": "high"
+    },
+    {
+      "name": "Acrimony Notif",
+      "pattern": "Dispersive|stars collide|prismatic sphere",
+      "effect": "Dispersive stars collide at the heart of a prismatic sphere...",
+      "severity": "high"
+    },
+    {
+      "name": "Sirius-X10 Notif",
+      "pattern": "Charred remains|once pristine|satellite|aimlessly through",
+      "effect": "Charred remains of a once pristine satellite drift aimlessly through the void...",
+      "severity": "high"
+    },
+    {
+      "name": "Caelarius Notif",
+      "pattern": "boundless veil|in eternal frost",
+      "effect": "A boundless veil envelopes you in eternal frost...",
+      "severity": "high"
+    },
+    {
+      "name": "Quasar 618 Notif",
+      "pattern": "gargantuan nucleus|destabilizes the mine",
+      "effect": "A gargantuan nucleus destabilizes the mine around you...",
+      "severity": "high"
+    },
+    {
+      "name": "NOO P α Notif",
+      "pattern": "soothing presence|shroud of purple mist|purple mist",
+      "effect": "A soothing presence permeates the air in a shroud of purple mist...",
+      "severity": "high"
+    },
+    {
+      "name": "Exdeus Notif",
+      "pattern": "seraphic energy|surges through your soul",
+      "effect": "A burst of seraphic energy surges through your soul...",
+      "severity": "high"
+    },
+    {
+      "name": "Computer Annihilator 4600 MK. II Notif",
+      "pattern": "intricate machine|decimates the oddities|simplistic world",
+      "effect": "An intricate machine decimates the oddities of a simplistic world...",
+      "severity": "high"
+    },
+    {
+      "name": "Achromatopsia Notif",
+      "pattern": "sight distorts|vibrance vanishes",
+      "effect": "Your sight distorts as vibrance vanishes from the world around you...",
+      "severity": "high"
+    },
+    {
+      "name": "Dreamscape Notif",
+      "pattern": "endless generations|mystical clockwork|dreams of endless",
+      "effect": "Dreams of endless generations converge into a mystical clockwork...",
+      "severity": "high"
+    },
+    {
+      "name": "Vily Narila Notif",
+      "pattern": "frequencies resonate|firmament|transmissions lost to time",
+      "effect": "Frequencies resonate through the firmament, unveiling transmissions lost to time...",
+      "severity": "high"
+    },
+    {
+      "name": "Dyvantium Notif",
+      "pattern": "tempest of raw energy|accelerates through the mine",
+      "effect": "A tempest of raw energy accelerates through the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "Equalizosity Notif",
+      "pattern": "brilliant celadon|celadon light|infuses your soul",
+      "effect": "A brilliant celadon light infuses your soul...",
+      "severity": "high"
+    },
+    {
+      "name": "Duostella Notif",
+      "pattern": "celestial bodies|bygone era|fabric of space",
+      "effect": "Celestial bodies of a bygone era dance through the fabric of space...",
+      "severity": "high"
+    },
+    {
+      "name": "GENESIS Notif",
+      "pattern": "twisting circuitry|ferocious outburst|electric energy",
+      "effect": "Twisting circuitry explodes in a ferocious outburst of electric energy...",
+      "severity": "high"
+    },
+    {
+      "name": "404 Gateway Notif",
+      "pattern": "404.*MESSAGE NOT FOUND.*RETURNING TO EVENT IN \\d+",
+      "effect": "404: MESSAGE NOT FOUND. RETURNING TO EVENT IN x SECONDS.",
+      "severity": "high"
+    },
+    {
+      "name": "CHECKPOINT.0901 Notif",
+      "pattern": "transient beings|higher plane|invade the mine",
+      "effect": "Networks of transient beings from a higher plane invade the mines...",
+      "severity": "high"
+    },
+    {
+      "name": "Monolith of Origin Notif",
+      "pattern": "its nascence|stars dawn|illuminate the universe",
+      "effect": "From its nascence, stars dawn and illuminate the universe...",
+      "severity": "high"
+    },
+    {
+      "name": "TROJ4N Notif",
+      "pattern": "rogue force|infiltrates the mine|wreaking havoc",
+      "effect": "A rogue force infiltrates the mine, wreaking havoc in its advent...",
+      "severity": "high"
+    },
+    {
+      "name": "Vertiglow Notif",
+      "pattern": "translucent shards|breathe life|impossible color",
+      "effect": "Vibrant translucent shards breathe life to impossible color...",
+      "severity": "high"
+    },
+    {
+      "name": "Mekanos Notif",
+      "pattern": "candescent robot|aberrates|blazing color",
+      "effect": "A candescent robot aberrates your eyes with blazing color...",
+      "severity": "high"
+    },
+    {
+      "name": "Theon Notif",
+      "pattern": "hypershapes|tear in space",
+      "effect": "Hypershapes wander through a tear in space-time...",
+      "severity": "high"
+    },
+    {
+      "name": "Solace Notif",
+      "pattern": "warming hand|offers respite|harshness of the world",
+      "effect": "A warming hand offers respite from the harshness of the world around you...",
+      "severity": "high"
+    },
+    {
+      "name": "Cataclysmium Notif",
+      "pattern": "scorches of crimson|herald a terrible|terrible calamity",
+      "effect": "Scorches of crimson herald a terrible calamity...",
+      "severity": "high"
+    },
+    {
+      "name": "Antlerion Notif",
+      "pattern": "stellar beam|streaks the sky|distant worlds",
+      "effect": "A stellar beam streaks the sky, relaying the essences of life to distant worlds...",
+      "severity": "high"
+    },
+    {
+      "name": "Thermazine Notif",
+      "pattern": "thermal opposites|exotic dance|harmonious duality",
+      "effect": "Thermal opposites perform an exotic dance in harmonious duality...",
+      "severity": "high"
+    },
+    {
+      "name": "Low.HP Notif",
+      "pattern": "weak pulses|heart of digita|final hope",
+      "effect": "Weak pulses from the heart of Digita ring out their final hope...",
+      "severity": "high"
+    },
+    {
+      "name": "CHTOTOZYOLE Notif",
+      "pattern": "downcast spirits|catalyze|wicked rite",
+      "effect": "Downcast spirits catalyze a wicked rite...",
+      "severity": "high"
+    },
+    {
+      "name": "Austiori Notif",
+      "pattern": "ensnared|cursewrit",
+      "effect": "Your soul is ensnared by a cursewrit monolith...",
+      "severity": "high"
+    },
+    {
+      "name": "Scourge Notif",
+      "pattern": "sinful presence|supplants your mind",
+      "effect": "A sinful presence supplants your mind...",
+      "severity": "high"
+    },
+    {
+      "name": "Frostblossom Notif",
+      "pattern": "solitude seed|seed of ice|petals wrapping",
+      "effect": "A solitude seed of ice sprouts from the frost, its petals wrapping around the ground beneath it...",
+      "severity": "high"
+    },
+    {
+      "name": "UNFUN Notif",
+      "pattern": "night comes alive|ferris wheel|unparalleled proportions",
+      "effect": "As the night comes alive, a ferris wheel of unparalleled proportions towers over the sky...",
+      "severity": "high"
+    },
+    {
+      "name": "Aphrodite's Ring Notif",
+      "pattern": "precious stones|heart.bound devotion|dignify",
+      "effect": "Precious stones dignify a heart-bound devotion...",
+      "severity": "high"
+    },
+    {
+      "name": "Coruscentia Notif",
+      "pattern": "festive depths|ephemeral celebration|shines merrily",
+      "effect": "Deep in festive depths, an ephemeral celebration of color shines merrily...",
+      "severity": "high"
+    },
+    {
+      "name": "Ephemryst Notif",
+      "pattern": "reflectant crystals|supernatural geode",
+      "effect": "Reflectant crystals of a supernatural geode erupt through the frost...",
+      "severity": "high"
+    },
+    {
+      "name": "Hallownest Notif",
+      "pattern": "bleak bellows|withering kingdom|resound",
+      "effect": "Bleak bellows resound throughout a withering kingdom...",
+      "severity": "high"
+    },
+    {
+      "name": "Vocarus Notif",
+      "pattern": "lavender luminescence|sugary twilight|irradiates",
+      "effect": "Lavender luminescence irradiates a sugary twilight...",
+      "severity": "high"
+    },
+    {
+      "name": "Grimonolith Notif",
+      "pattern": "amalgamated slime|abstract monolith",
+      "effect": "Amalgamated slime clusters around an abstract monolith...",
+      "severity": "high"
+    },
+    {
+      "name": "Perihelion Notif",
+      "pattern": "blazing pillar|smites the summer|summer sky",
+      "effect": "A blazing pillar of light smites the summer sky...",
+      "severity": "high"
+    },
+    {
+      "name": "Venemence Notif",
+      "pattern": "burns with contempt",
+      "effect": "The air burns with contempt...",
+      "severity": "high"
+    },
+    {
+      "name": "Subliminaire Notif",
+      "pattern": "submerged torrents|tropical trance",
+      "effect": "Submerged torrents invoke a tropical trance...",
+      "severity": "high"
+    },
+    {
+      "name": "Sombermoor Notif",
+      "pattern": "monochrome wasteland|lonely tree|final company",
+      "effect": "At the edge of a monochrome wasteland, a lonely tree finds its final company...",
+      "severity": "high"
+    },
+    {
+      "name": "Cocytus Notif",
+      "pattern": "radiant snowflake|brittle stone|glacial beams|icy paths",
+      "effect": "A radiant snowflake cleaves brittle stone as glacial beams etch icy paths in the sky...",
+      "severity": "high"
+    },
+    {
+      "name": "Autumnus Notif",
+      "pattern": "majestic branches|mystical amber|take root",
+      "effect": "Majestic branches take root around a mystical amber...",
+      "severity": "high"
+    },
+    {
+      "name": "Asminthia Notif",
+      "pattern": "peppermint spirals|sugarlaced crystals|festive sweets",
+      "effect": "Peppermint spirals layering sugarlaced crystals prelude a celebration of festive sweets...",
+      "severity": "high"
+    },
+    {
+      "name": "Reminiscence Notif",
+      "pattern": "tranquil sceneries|forgotten memories|reawaken",
+      "effect": "Tranquil sceneries reawaken forgotten memories...",
+      "severity": "high"
+    },
+    {
+      "name": "Wishtree Notif",
+      "pattern": "arborescent benevolence|seeking their wish",
+      "effect": "An arborescent benevolence gifts the dreams of those seeking their wish...",
+      "severity": "high"
+    },
+    {
+      "name": "Midnight Notif",
+      "pattern": "fateful night|moon split in two",
+      "effect": "And on this fateful night, the moon split in two...",
+      "severity": "high"
+    },
+    {
+      "name": "Yuki Onna Notif",
+      "pattern": "eternal bloom|still.frozen past",
+      "effect": "An eternal bloom unfolds, its light holding a still-frozen past...",
+      "severity": "high"
+    },
+    {
+      "name": "Underworld Notif",
+      "pattern": "hands of hell|time has expired",
+      "effect": "Hands of hell seek out those whose time has expired...",
+      "severity": "high"
+    },
+    {
+      "name": "Polarctica Notif",
+      "pattern": "frozen skies|moonlit observatory|auroral blessings",
+      "effect": "Below frozen skies, a moonlit observatory endows auroral blessings...",
+      "severity": "high"
+    },
+    {
+      "name": "Delerictum Notif",
+      "pattern": "restless phantoms|forlorn chapel",
+      "effect": "Restless phantoms haunt the remains of a forlorn chapel...",
+      "severity": "high"
+    },
+    {
+      "name": "Wintburg Notif",
+      "pattern": "snowswept city|rogue star",
+      "effect": "A snowswept city calls upon its heart to match a rogue star's approach...",
+      "severity": "high"
+    },
+    {
+      "name": "Troylezian Notif",
+      "pattern": "coram me stans|voluntati meae|favisti",
+      "effect": "Coram me stans, voluntati meae favisti.",
+      "severity": "high"
+    },
+    {
+      "name": "Corrupt Agsper Crystal Notif",
+      "pattern": "corruption seizes|warmth of an old friend",
+      "effect": "Corruption seizes the warmth of an old friend...",
+      "severity": "high"
+    },
+    {
+      "name": "Vela Pulsar Notif",
+      "pattern": "chaotic pulsar|corrodes life|subatomic level",
+      "effect": "A chaotic pulsar corrodes life at the subatomic level...",
+      "severity": "high"
+    },
+    {
+      "name": "Chromablank Notif",
+      "pattern": "chromatic beauty|void of silence",
+      "effect": "INFINITE CHROMATIC BEAUTY, AROUND A VOID OF SILENCE.",
+      "severity": "high"
+    },
+    {
+      "name": "Seratonin Notif",
+      "pattern": "fatigue overpowers",
+      "effect": "Fatigue overpowers your mind...",
+      "severity": "high"
+    },
+    {
+      "name": "God Directriol Notif",
+      "pattern": "complex paths|parallel dimensions|contour across",
+      "effect": "Complex paths contour across parallel dimensions...",
+      "severity": "high"
+    },
+    {
+      "name": "Voidirinite Notif",
+      "pattern": "call rings out|from the abyss|saying your name",
+      "effect": "A call rings out from the abyss... ...it's saying your name.",
+      "severity": "high"
+    },
+    {
+      "name": "Thumb Crystal Notif",
+      "pattern": "thumb nails|familiar sight",
+      "effect": "Your thumb nails twitch at a familiar sight...",
+      "severity": "high"
+    },
+    {
+      "name": "Shadow Cherkasyl Notif",
+      "pattern": "ten.fold chaos|semblance of order",
+      "effect": "Ten-fold chaos, for every semblance of order.",
+      "severity": "high"
+    },
+    {
+      "name": "X-Flare Notif",
+      "pattern": "more heat|burn the air itself",
+      "effect": "Heat. More heat, to burn the air itself.",
+      "severity": "high"
+    },
+    {
+      "name": "Machina Notif",
+      "pattern": "divine forces|heavenly cave|emanate",
+      "effect": "Divine forces emanate from a heavenly cave...",
+      "severity": "high"
+    },
+    {
+      "name": "Chrysalis Notif",
+      "pattern": "forgotten entity|center of the earth|age long past|draw closer",
+      "effect": "A forgotten entity buried in the center of the earth in an age long past gains hope as you draw closer...",
+      "severity": "high"
+    },
+    {
+      "name": "Syderea Notif",
+      "pattern": "stellar paradise|cosmic dust|manifests",
+      "effect": "A stellar paradise manifests from cosmic dust...",
+      "severity": "high"
+    },
+    {
+      "name": "Universal Collapse Notif",
+      "pattern": "universe collapses",
+      "effect": "And suddenly, the universe collapses.",
+      "severity": "high"
+    },
+    {
+      "name": "C◊SMIC_SPLIT Notif",
+      "pattern": "cosmos shatters|sparkling beauty",
+      "effect": "The cosmos shatters in sparkling beauty...",
+      "severity": "high"
+    },
+    {
+      "name": "Jadefall Notif",
+      "pattern": "pristine glass|dazzling jade",
+      "effect": "Chimes of pristine glass complement a dazzling jade...",
+      "severity": "high"
+    },
+    {
+      "name": "SCARLET Notif",
+      "pattern": "RAGE LACERATES|YOUR PSYCHE",
+      "effect": "RAGE LACERATES YOUR PSYCHE...",
+      "severity": "high"
+    },
+    {
+      "name": "Vantablack Notif",
+      "pattern": "gaping void|deprives vibrance",
+      "effect": "A gaping void deprives vibrance from the world...",
+      "severity": "high"
+    },
+    {
+      "name": "Unstable Megacore Notif",
+      "pattern": "THUNDEROUS QUASAR|THREATENS LIFE AND",
+      "effect": "A THUNDEROUS QUASAR THREATENS LIFE AND BEING...",
+      "severity": "high"
+    },
+    {
+      "name": "Overseer Notif",
+      "pattern": "ancient ritual|colorless order|disturbs the",
+      "effect": "An ancient ritual disturbs the colorless order...",
+      "severity": "high"
+    },
+    {
+      "name": "IBLIS Notif",
+      "pattern": "Regal rubies|forsaken god|wrath of",
+      "effect": "Regal rubies shatter under the wrath of a forsaken god...",
+      "severity": "high"
+    },
+    {
+      "name": "Sinistral Notif",
+      "pattern": "path to hell|serrates|reality.s fabric",
+      "effect": "The path to hell serrates reality's fabric...",
+      "severity": "high"
+    },
+    {
+      "name": "Prisma Notif",
+      "pattern": "essence of light|unending darkness",
+      "effect": "The essence of light breaks an unending darkness...",
+      "severity": "high"
+    },
+    {
+      "name": "ψ Notif",
+      "pattern": "Awaiting response",
+      "effect": "Awaiting response...",
+      "severity": "high"
+    },
+    {
+      "name": "Malix Notif",
+      "pattern": "ground shakes",
+      "effect": "The ground shakes below your feet...",
+      "severity": "high"
+    },
+    {
+      "name": "Ultra Sinistral Notif",
+      "pattern": "pure light revives|lost creativity",
+      "effect": "A pure light revives memories of lost creativity...",
+      "severity": "high"
+    },
+    {
+      "name": "Shadow-X Notif",
+      "pattern": "Darkness consumes",
+      "effect": "Darkness consumes all.",
+      "severity": "high"
+    },
+    {
+      "name": "∞ Notif",
+      "pattern": "forever and ever",
+      "effect": "FOREVER AND EVER",
+      "severity": "high"
+    },
+    {
+      "name": "Fiction Notif",
+      "pattern": "biggest wish|just once in|star be born",
+      "effect": "\"My biggest wish... just once in my lifetime, to see a star be born!\"",
+      "severity": "high"
+    },
+    {
+      "name": "Zanarchium Notif",
+      "pattern": "unusual force|materializes upon|surface of this",
+      "effect": "An unusual force materializes upon the surface of this world...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Nebula Tempest",
+      "pattern": "flurry of stars|strengthens your stride",
+      "effect": "A flurry of stars strengthens your stride...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: CORRUPTELA",
+      "pattern": "emissions of redacted|redacted signals|jumble your senses",
+      "effect": "Emissions of redacted signals jumble your senses...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Cosmonolithius",
+      "pattern": "starlit vistas|wireframe layer",
+      "effect": "Starlit vistas shine upon the Wireframe layer...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Photon Fluxulite",
+      "pattern": "electric fluxes|charge up your body",
+      "effect": "Sudden electric fluxes charge up your body...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Virtuosity",
+      "pattern": "luscious holograms|callow modesty|fluoresce",
+      "effect": "Luscious holograms fluoresce with callow modesty...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Darkmatter Stabilizer",
+      "pattern": "strifes in fabric|fabric plateau",
+      "effect": "Strifes in fabric plateau momentarily...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Nebulova",
+      "pattern": "magical shimmers|cleave into the darkness",
+      "effect": "Magical shimmers cleave into the darkness...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: The Firewall",
+      "pattern": "virtual barricade|bottom of the world",
+      "effect": "A virtual barricade assembles at the bottom of the world...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Aetherion",
+      "pattern": "stardust from across|begins to aggregate",
+      "effect": "Stardust from across space begins to aggregate...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Antlerion",
+      "pattern": "soothing frequencies|core of digita",
+      "effect": "Soothing frequencies emit from the core of Digita...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Mekanos",
+      "pattern": "lights from the steel|steel layer|mine.s vibrance",
+      "effect": "Lights from the Steel layer enhance the mine's vibrance...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: C◊SMIC_SPLIT",
+      "pattern": "rifts in space.time|grow wider|destabilizing the mine",
+      "effect": "Rifts in space-time grow wider, destabilizing the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Lunar Flaeon",
+      "pattern": "sweat beads|on your forehead",
+      "effect": "Sweat beads accumulate on your forehead...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Lunar Freon",
+      "pattern": "air gets colder",
+      "effect": "The air gets colder around you...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Lunar Poiseon",
+      "pattern": "skin prickles|prickles and stings",
+      "effect": "Your skin prickles and stings...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Sagittarius Quasar",
+      "pattern": "powerful force|deep underground",
+      "effect": "A powerful force emits from deep underground...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Lunar Astatine",
+      "pattern": "quarry decays|the quarry",
+      "effect": "The quarry decays below your feet...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Protoflare",
+      "pattern": "almighty star|sends a shockwave|shockwave through the mine",
+      "effect": "The birth of an almighty star sends a shockwave through the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Vaporwave Pulsar",
+      "pattern": "a ?e ?s ?t ?h ?e ?t ?i ?c",
+      "effect": "A E S T H E T I C",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: RGB Pulsar",
+      "pattern": "high.mass compact|gaming energy|rotating sphere",
+      "effect": "A high-mass compact rotating sphere emits beams of intense gaming energy deep in the mines...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Lunar Codex",
+      "pattern": "confidential information|mainframe leaks|leaks into reality",
+      "effect": "Confidential information from the mainframe leaks into reality...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Anti-Shadow Crystal",
+      "pattern": "antimatter layer|delicate crystal",
+      "effect": "Light from the Antimatter layer forms a delicate crystal...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Thai's Star",
+      "pattern": "glimmer of hope|depths of the void",
+      "effect": "A glimmer of hope flickers in the depths of the void...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: SGR_A",
+      "pattern": "gravitational force|drags you towards|towards outer space",
+      "effect": "A gravitational force drags you towards outer space...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Tycoon Crystal",
+      "pattern": "endless machinations|golden age of farlight|money and riches",
+      "effect": "Endless machinations signal MONEY and RICHES and WEALTH and PROSPERITY and OPULENCE for a GOLDEN AGE of Farlight...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: X2 Crystal",
+      "pattern": "vibrant patterns|color to the unknown",
+      "effect": "Vibrant patterns give color to the unknown...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Agsperum's Charm",
+      "pattern": "golden relic|buried long ago|world.s surface",
+      "effect": "A golden relic buried long ago echoes near the world's surface...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Void Eye",
+      "pattern": "swirling vortex|last bits of the vacuum|pull in the last",
+      "effect": "A swirling vortex begins to pull in the last bits of the vacuum...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Hyperstar",
+      "pattern": "bolting flashes|brighten outer space",
+      "effect": "Bolting flashes of light brighten outer space...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Polaris Australis",
+      "pattern": "fireworks celebrate|celebrate a guiding star",
+      "effect": "Off in the distance, fireworks celebrate a guiding star...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: X-Flare",
+      "pattern": "magnetic flares|flares scorch the mine",
+      "effect": "Magnetic flares scorch the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Troylezian",
+      "pattern": "benedictio antiqua|dignitatem tuam|exspectat",
+      "effect": "Benedictio antiqua dignitatem tuam exspectat...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Serotonin",
+      "pattern": "hypnotic happiness|happiness floods",
+      "effect": "A hypnotic happiness floods the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Prisma",
+      "pattern": "morning sky|brilliance unmatched",
+      "effect": "This morning sky has a brilliance unmatched...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Dunestride",
+      "pattern": "miniature dust devil|maculite layer|dust devil",
+      "effect": "A miniature dust devil forms in the Maculite layer...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Mythical Hive",
+      "pattern": "sound of fluttering|sense of comfort",
+      "effect": "The distant sound of fluttering fills you with a sense of comfort...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Corerupted",
+      "pattern": "muffled laughter",
+      "effect": "Muffled laughter echoes about the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Cryonstelar",
+      "pattern": "moisture in the air|constellations of ice",
+      "effect": "Moisture in the air crystallizes, forming constellations of ice...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: The All-Seeing",
+      "pattern": "hordes of eyes|piercing gaze",
+      "effect": "Hordes of eyes lock their piercing gaze on you...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Panselinos",
+      "pattern": "verdant luster|moon.s verdant",
+      "effect": "The moon's verdant luster empowers the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Divinis",
+      "pattern": "royal ice formations|brittle deepfrost",
+      "effect": "Royal ice formations sprout from brittle deepfrost...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Umbrasnare",
+      "pattern": "ruinous lies|twisted sarcophagus|sarcophagus tether",
+      "effect": "Ruinous lies from a twisted sarcophagus tether the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Yuletide Star",
+      "pattern": "jovial carols|brilliant star.s advent",
+      "effect": "Jovial carols convene for a brilliant star's advent...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Sunflower",
+      "pattern": "soft petals|oppressive radiance|sun.s oppressive",
+      "effect": "Soft petals absorb the sun's oppressive radiance...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Ectoplasmado",
+      "pattern": "whirlwind of souls|whispers heard in every direction",
+      "effect": "A whirlwind of souls surrounds the mine, their whispers heard in every direction...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Aurora Polaris",
+      "pattern": "memorable beacon|close to the caverns",
+      "effect": "Flickering of a memorable beacon draws you close to the caverns...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Frutiflux",
+      "pattern": "summer freedom|ring through the sea",
+      "effect": "Celebrations of summer freedom ring through the sea...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Ephemryst",
+      "pattern": "reflections of ice|flicker between worlds",
+      "effect": "Reflections of ice crystals flicker between worlds...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Hallownest",
+      "pattern": "sanctum of tears|gleams with radiance",
+      "effect": "A sanctum of tears gleams with radiance...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Vocarus",
+      "pattern": "twilight magic|illuminates a guiding",
+      "effect": "The essence of twilight magic illuminates a guiding path...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Soulswirl",
+      "pattern": "specter cyclone|sepulcrum layer",
+      "effect": "A specter cyclone ravages through the Sepulcrum layer...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Antlerice",
+      "pattern": "reindeer gallops|cicallite layer",
+      "effect": "Reindeer gallops ring across the Cicallite layer...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Snowglobe III",
+      "pattern": "encapsulated wonderland|calls out to your heart",
+      "effect": "An encapsulated wonderland calls out to your heart...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Ornaswirl",
+      "pattern": "bouncing baubles|briskly buzzing",
+      "effect": "Bouncing baubles bob and blur, briskly buzzing by...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Cobbore",
+      "pattern": "resonant caws|bountiful harvest",
+      "effect": "Resonant caws foretell a bountiful harvest...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Crystalia",
+      "pattern": "reflective crystal beams|festive energy",
+      "effect": "A frozen, reflective crystal beams with festive energy...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Polaris",
+      "pattern": "solemn star|northern sky|blazes with brilliance",
+      "effect": "A solemn star in the northern sky blazes with brilliance...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Keres",
+      "pattern": "air runs cold|unrelenting premonitions|premonitions of terror",
+      "effect": "The air runs cold with unrelenting premonitions of terror...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Verdafrost",
+      "pattern": "viridescent ice|viridescent",
+      "effect": "Viridescent ice crystals lacerate the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Reminiscence",
+      "pattern": "gentle breezes|idyllic fall|memories of idyllic",
+      "effect": "Gentle breezes call back memories of idyllic fall...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Yuki Onna",
+      "pattern": "elegant lotus|drapes your soul",
+      "effect": "The presence of an elegant lotus drapes your soul with solace...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: DOOMSDAY",
+      "pattern": "deafening chimes|eternal clock|clock boom",
+      "effect": "Deafening chimes of an eternal clock boom throughout the mine...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Wintburg",
+      "pattern": "decorations all around|festive midnight|bedazzle",
+      "effect": "Decorations all around the city bedazzle a festive midnight...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Theon",
+      "pattern": "reverberat.*abstract|celestial.*message",
+      "effect": "A celestial message reverberates from the abstracted...",
+      "severity": "high"
+    },
+    {
+      "name": "EVENT: Shadow-X",
+      "pattern": "this will be a terrible|terrible.night",
+      "effect": "This will be a terrible night",
+      "severity": "high"
+    }
+  ]
+}

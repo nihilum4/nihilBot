@@ -1,0 +1,10 @@
+# All platforms
+pillow
+pytesseract
+requests
+
+# Windows only
+pywin32
+
+# macOS only
+pyobjc-framework-Quartz
