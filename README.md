@@ -1,4 +1,4 @@
-# Game Monitor
+# nihilBot
 
 Watches the notification bar in REx:R and sends Discord DM alerts. Works when the game is on a different virtual desktop or you're afk, unless the screen closes.
 
