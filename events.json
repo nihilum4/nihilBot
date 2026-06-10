@@ -29,7 +29,7 @@
       "name": "Mine Reset",
       "pattern": "mine.*(reset|refresh)|reset.*mine",
       "effect": "Mine capacity is refreshing",
-      "severity": "low"
+      "severity": "medium"
     },
     {
       "name": "Idolium Notif",
@@ -587,391 +587,601 @@
       "name": "EVENT: Nebula Tempest",
       "pattern": "flurry of stars|strengthens your stride",
       "effect": "A flurry of stars strengthens your stride...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: CORRUPTELA",
       "pattern": "emissions of redacted|redacted signals|jumble your senses",
       "effect": "Emissions of redacted signals jumble your senses...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Cosmonolithius",
       "pattern": "starlit vistas|wireframe layer",
       "effect": "Starlit vistas shine upon the Wireframe layer...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Photon Fluxulite",
       "pattern": "electric fluxes|charge up your body",
       "effect": "Sudden electric fluxes charge up your body...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Virtuosity",
       "pattern": "luscious holograms|callow modesty|fluoresce",
       "effect": "Luscious holograms fluoresce with callow modesty...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Darkmatter Stabilizer",
       "pattern": "strifes in fabric|fabric plateau",
       "effect": "Strifes in fabric plateau momentarily...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Nebulova",
       "pattern": "magical shimmers|cleave into the darkness",
       "effect": "Magical shimmers cleave into the darkness...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: The Firewall",
       "pattern": "virtual barricade|bottom of the world",
       "effect": "A virtual barricade assembles at the bottom of the world...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Aetherion",
       "pattern": "stardust from across|begins to aggregate",
       "effect": "Stardust from across space begins to aggregate...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Antlerion",
       "pattern": "soothing frequencies|core of digita",
       "effect": "Soothing frequencies emit from the core of Digita...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Mekanos",
       "pattern": "lights from the steel|steel layer|mine.s vibrance",
       "effect": "Lights from the Steel layer enhance the mine's vibrance...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: C◊SMIC_SPLIT",
       "pattern": "rifts in space.time|grow wider|destabilizing the mine",
       "effect": "Rifts in space-time grow wider, destabilizing the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Lunar Flaeon",
       "pattern": "sweat beads|on your forehead",
       "effect": "Sweat beads accumulate on your forehead...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Lunar Freon",
       "pattern": "air gets colder",
       "effect": "The air gets colder around you...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Lunar Poiseon",
       "pattern": "skin prickles|prickles and stings",
       "effect": "Your skin prickles and stings...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Sagittarius Quasar",
       "pattern": "powerful force|deep underground",
       "effect": "A powerful force emits from deep underground...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Lunar Astatine",
       "pattern": "quarry decays|the quarry",
       "effect": "The quarry decays below your feet...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Protoflare",
       "pattern": "almighty star|sends a shockwave|shockwave through the mine",
       "effect": "The birth of an almighty star sends a shockwave through the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Vaporwave Pulsar",
       "pattern": "a ?e ?s ?t ?h ?e ?t ?i ?c",
       "effect": "A E S T H E T I C",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: RGB Pulsar",
       "pattern": "high.mass compact|gaming energy|rotating sphere",
       "effect": "A high-mass compact rotating sphere emits beams of intense gaming energy deep in the mines...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Lunar Codex",
       "pattern": "confidential information|mainframe leaks|leaks into reality",
       "effect": "Confidential information from the mainframe leaks into reality...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Anti-Shadow Crystal",
       "pattern": "antimatter layer|delicate crystal",
       "effect": "Light from the Antimatter layer forms a delicate crystal...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Thai's Star",
       "pattern": "glimmer of hope|depths of the void",
       "effect": "A glimmer of hope flickers in the depths of the void...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: SGR_A",
       "pattern": "gravitational force|drags you towards|towards outer space",
       "effect": "A gravitational force drags you towards outer space...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Tycoon Crystal",
       "pattern": "endless machinations|golden age of farlight|money and riches",
       "effect": "Endless machinations signal MONEY and RICHES and WEALTH and PROSPERITY and OPULENCE for a GOLDEN AGE of Farlight...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: X2 Crystal",
       "pattern": "vibrant patterns|color to the unknown",
       "effect": "Vibrant patterns give color to the unknown...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Agsperum's Charm",
       "pattern": "golden relic|buried long ago|world.s surface",
       "effect": "A golden relic buried long ago echoes near the world's surface...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Void Eye",
       "pattern": "swirling vortex|last bits of the vacuum|pull in the last",
       "effect": "A swirling vortex begins to pull in the last bits of the vacuum...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Hyperstar",
       "pattern": "bolting flashes|brighten outer space",
       "effect": "Bolting flashes of light brighten outer space...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Polaris Australis",
       "pattern": "fireworks celebrate|celebrate a guiding star",
       "effect": "Off in the distance, fireworks celebrate a guiding star...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: X-Flare",
       "pattern": "magnetic flares|flares scorch the mine",
       "effect": "Magnetic flares scorch the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Troylezian",
       "pattern": "benedictio antiqua|dignitatem tuam|exspectat",
       "effect": "Benedictio antiqua dignitatem tuam exspectat...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Serotonin",
       "pattern": "hypnotic happiness|happiness floods",
       "effect": "A hypnotic happiness floods the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Prisma",
       "pattern": "morning sky|brilliance unmatched",
       "effect": "This morning sky has a brilliance unmatched...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Dunestride",
       "pattern": "miniature dust devil|maculite layer|dust devil",
       "effect": "A miniature dust devil forms in the Maculite layer...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Mythical Hive",
       "pattern": "sound of fluttering|sense of comfort",
       "effect": "The distant sound of fluttering fills you with a sense of comfort...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Corerupted",
       "pattern": "muffled laughter",
       "effect": "Muffled laughter echoes about the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Cryonstelar",
       "pattern": "moisture in the air|constellations of ice",
       "effect": "Moisture in the air crystallizes, forming constellations of ice...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: The All-Seeing",
       "pattern": "hordes of eyes|piercing gaze",
       "effect": "Hordes of eyes lock their piercing gaze on you...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Panselinos",
       "pattern": "verdant luster|moon.s verdant",
       "effect": "The moon's verdant luster empowers the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Divinis",
       "pattern": "royal ice formations|brittle deepfrost",
       "effect": "Royal ice formations sprout from brittle deepfrost...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Umbrasnare",
       "pattern": "ruinous lies|twisted sarcophagus|sarcophagus tether",
       "effect": "Ruinous lies from a twisted sarcophagus tether the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Yuletide Star",
       "pattern": "jovial carols|brilliant star.s advent",
       "effect": "Jovial carols convene for a brilliant star's advent...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Sunflower",
       "pattern": "soft petals|oppressive radiance|sun.s oppressive",
       "effect": "Soft petals absorb the sun's oppressive radiance...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Ectoplasmado",
       "pattern": "whirlwind of souls|whispers heard in every direction",
       "effect": "A whirlwind of souls surrounds the mine, their whispers heard in every direction...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Aurora Polaris",
       "pattern": "memorable beacon|close to the caverns",
       "effect": "Flickering of a memorable beacon draws you close to the caverns...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Frutiflux",
       "pattern": "summer freedom|ring through the sea",
       "effect": "Celebrations of summer freedom ring through the sea...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Ephemryst",
       "pattern": "reflections of ice|flicker between worlds",
       "effect": "Reflections of ice crystals flicker between worlds...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Hallownest",
       "pattern": "sanctum of tears|gleams with radiance",
       "effect": "A sanctum of tears gleams with radiance...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Vocarus",
       "pattern": "twilight magic|illuminates a guiding",
       "effect": "The essence of twilight magic illuminates a guiding path...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Soulswirl",
       "pattern": "specter cyclone|sepulcrum layer",
       "effect": "A specter cyclone ravages through the Sepulcrum layer...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Antlerice",
       "pattern": "reindeer gallops|cicallite layer",
       "effect": "Reindeer gallops ring across the Cicallite layer...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Snowglobe III",
       "pattern": "encapsulated wonderland|calls out to your heart",
       "effect": "An encapsulated wonderland calls out to your heart...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Ornaswirl",
       "pattern": "bouncing baubles|briskly buzzing",
       "effect": "Bouncing baubles bob and blur, briskly buzzing by...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Cobbore",
       "pattern": "resonant caws|bountiful harvest",
       "effect": "Resonant caws foretell a bountiful harvest...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Crystalia",
       "pattern": "reflective crystal beams|festive energy",
       "effect": "A frozen, reflective crystal beams with festive energy...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Polaris",
       "pattern": "solemn star|northern sky|blazes with brilliance",
       "effect": "A solemn star in the northern sky blazes with brilliance...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Keres",
       "pattern": "air runs cold|unrelenting premonitions|premonitions of terror",
       "effect": "The air runs cold with unrelenting premonitions of terror...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Verdafrost",
       "pattern": "viridescent ice|viridescent",
       "effect": "Viridescent ice crystals lacerate the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Reminiscence",
       "pattern": "gentle breezes|idyllic fall|memories of idyllic",
       "effect": "Gentle breezes call back memories of idyllic fall...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Yuki Onna",
       "pattern": "elegant lotus|drapes your soul",
       "effect": "The presence of an elegant lotus drapes your soul with solace...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: DOOMSDAY",
       "pattern": "deafening chimes|eternal clock|clock boom",
       "effect": "Deafening chimes of an eternal clock boom throughout the mine...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Wintburg",
       "pattern": "decorations all around|festive midnight|bedazzle",
       "effect": "Decorations all around the city bedazzle a festive midnight...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Theon",
       "pattern": "reverberat.*abstract|celestial.*message",
       "effect": "A celestial message reverberates from the abstracted...",
-      "severity": "high"
+      "severity": "low"
     },
     {
       "name": "EVENT: Shadow-X",
       "pattern": "this will be a terrible|terrible.night",
       "effect": "This will be a terrible night",
-      "severity": "high"
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Spristium",
+      "pattern": "almighty.*granite|glitters green",
+      "effect": "An almighty crystal glitters green deep in the granite layer...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Quandrium",
+      "pattern": "peculiar crystal.*reveals|far below the surface",
+      "effect": "A peculiar crystal reveals its location far below the surface...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Cleopatrite",
+      "pattern": "ground sizzles|sizzles below your feet",
+      "effect": "The ground sizzles below your feet...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Lucidium",
+      "pattern": "ethereal glow illuminates|glow illuminates the area",
+      "effect": "An ethereal glow illuminates the area around you...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Vitrilyx",
+      "pattern": "lustrous crystal shard|crystal shard.*mantle",
+      "effect": "A lustrous crystal shard illuminates the mantle layer...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Sentient Viscera",
+      "pattern": "nauseated.*breath|closer to the end",
+      "effect": "You feel nauseated as each breath you take makes you feel closer to the end...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Candilium",
+      "pattern": "radiant spiral.*magic|supernatural energy",
+      "effect": "A radiant spiral of magic fills the air with a supernatural energy...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Vaporwave Crystal",
+      "pattern": "strange feeling clouds.*mind|clouds up your mind",
+      "effect": "A strange feeling clouds up your mind...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Magnetyx",
+      "pattern": "strong force pulling|force pulling against",
+      "effect": "You feel a strong force pulling against you...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Temporum",
+      "pattern": "clock.*ticking.*marble|mystical clock.*ticking",
+      "effect": "A mystical clock's ticking can be heard emanating from the marble layer...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Combustal",
+      "pattern": "volatile substance.*bursts|bursts.*violently.*underground",
+      "effect": "A volatile substance bursts out violently deep underground...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Blazuine",
+      "pattern": "lustrous glass.*obsidian|soaring blue mineral",
+      "effect": "A soaring blue mineral forms out of the lustrous glass deep in the obsidian layer...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Euclideum",
+      "pattern": "shape.chang.*metal|materializes in the mine",
+      "effect": "An abstract, shape changing metal materializes in the mines...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Inkonium",
+      "pattern": "inky substance.*mines|voidescent",
+      "effect": "A black, inky substance accumulates in the mines, corrupting ores near it with its voidescent strength...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Ω",
+      "pattern": "astronomical power.*divine|gateway into the divine",
+      "effect": "The presence of an astronomical power yields a gateway into the divine...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Pastelorium",
+      "pattern": "pale.*shimmering fragment|array of colors.*mine",
+      "effect": "A pale, shimmering fragment bursts into an array of colors just below the surface of the mine...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Galactic Rupture",
+      "pattern": "galactic hues.*horizon|galactic hues",
+      "effect": "Galactic hues emerge far from the event horizon...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Heart of the Frosted",
+      "pattern": "frozen heart.*pulse|pulse.*thick frost",
+      "effect": "A once-frozen heart begins to pulse through the thick frost...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Atomium",
+      "pattern": "quarks orbit|forming nucleus",
+      "effect": "Microscopic quarks orbit around a forming nucleus...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Coronal Flare",
+      "pattern": "scorching heat.*deep.*mine|heat emerges.*deep depths",
+      "effect": "Scorching heat emerges from the deep depths of the mines...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Arcaleus",
+      "pattern": "core of a star pulses|star pulses.*immense energy",
+      "effect": "The core of a star pulses with immense energy deep underground...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Estrela",
+      "pattern": "shooting star streaks|stardust falling.*mine",
+      "effect": "A shooting star streaks across the sky, stardust falling upon the mine...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Circeterra",
+      "pattern": "rocks.*orbit.*blazing ball|blazing ball of fire",
+      "effect": "Clusters of rocks begin to orbit around a blazing ball of fire...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: NOO S-Sing. T1",
+      "pattern": "unknown signal.*edge of nothing|edge of nothing",
+      "effect": "An unknown signal emerges from the edge of nothing...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Vitriol",
+      "pattern": "gyrating.*iridescent|iridescent star.*world beneath",
+      "effect": "A gyrating, iridescent star shines light unto the world beneath you...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Spiritian",
+      "pattern": "lost spirits reunite|reunite.*core of the rift",
+      "effect": "Generations of lost spirits reunite at the core of the rift...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Catastormite",
+      "pattern": "electrifying forces convulse|convulse beneath your feet",
+      "effect": "Electrifying forces convulse beneath your feet...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Plasmonium",
+      "pattern": "high.voltage plasma|plasma.*atmosphere",
+      "effect": "High-voltage plasma releases energy into the atmosphere...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Frostrainium",
+      "pattern": "frigid gases|bone.chilling temperatures",
+      "effect": "Frigid gases cool the air to bone-chilling temperatures...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Obliveracy Endmost",
+      "pattern": "void condenses.*unstable|unstable cluster",
+      "effect": "Energy deep within the void condenses into an unstable cluster...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Idolium",
+      "pattern": "vibrant glint|corner.*eye",
+      "effect": "A vibrant glint flashes in the corner of your eye...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Inclemetite",
+      "pattern": "shiver.*freeze|air begins to freeze",
+      "effect": "You shiver as the air begins to freeze around you...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Illusory Bubblegram",
+      "pattern": "pallid radiance|tenuously lights",
+      "effect": "A pallid radiance tenuously lights up the ground below you...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: Acrimony",
+      "pattern": "chromatic shards.*crystallize|shatterstone",
+      "effect": "Chromatic shards crystallize throughout the shatterstone layer...",
+      "severity": "low"
+    },
+    {
+      "name": "EVENT: NOO P α",
+      "pattern": "distant planet.*scintillate|riftrock",
+      "effect": "Fragments of a distant planet scintillate from the twilight of the Riftrock layer...",
+      "severity": "low"
     }
   ]
 }
