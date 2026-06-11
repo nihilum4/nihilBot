@@ -23,6 +23,7 @@ import io
 import json
 import pathlib
 import re
+import string
 import sys
 import time
 import argparse
@@ -33,6 +34,8 @@ _here = pathlib.Path(__file__).parent
 import requests
 import pytesseract
 from PIL import Image
+
+_PUNCT = string.punctuation
 
 # ── Platform detection ────────────────────────────────────────────────────────
 _OS = _platform.system()   # "Windows" or "Darwin"
@@ -585,10 +588,11 @@ def main():
             time.sleep(config.POLL_INTERVAL)
             continue
 
-        # Reject garbage captures: require >50% alphanumeric AND at least 3 letter-containing words
+        # Reject garbage captures: require >50% alphanumeric AND at least 3 purely-alphabetic words (len>=2)
         stripped = text.replace(" ", "")
         alpha_ratio = sum(c.isalnum() for c in stripped) / len(stripped) if stripped else 0
-        real_words = [w for w in text.split() if any(c.isalpha() for c in w)]
+        real_words = [w.strip(_PUNCT) for w in text.split()]
+        real_words = [w for w in real_words if w.isalpha() and len(w) >= 2]
         if alpha_ratio < 0.5 or len(real_words) < 3:
             time.sleep(config.POLL_INTERVAL)
             continue
