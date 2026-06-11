@@ -131,33 +131,50 @@ def _fuzzy_ratio(a, b):
 # Raise it (e.g. 0.85) to be stricter; lower it (e.g. 0.55) to be more lenient.
 FUZZY_THRESHOLD = getattr(config, "FUZZY_THRESHOLD", 0.70)
 
-def _event_matches(event, lower_text):
-    # 1. Regex pattern (fastest, checked first)
+def _event_matches_exact(event, lower_text):
+    """Match by regex pattern or keywords only — no fuzzy."""
     pat = event.get("_pattern")
     if pat and pat.search(lower_text):
         return True
-    # 2. Keyword list
     if any(kw.lower() in lower_text for kw in event.get("keywords", [])):
         return True
-    # 3. Fuzzy match against the effect text — catches OCR errors without needing a pattern
-    effect = event.get("effect", "").lower()
-    if effect and _fuzzy_ratio(lower_text, effect) >= FUZZY_THRESHOLD:
-        return True
     return False
+
+
+def _event_matches_fuzzy(event, lower_text):
+    """Fuzzy fallback — only used when no exact match found across all events."""
+    effect = event.get("effect", "").lower()
+    return bool(effect and _fuzzy_ratio(lower_text, effect) >= FUZZY_THRESHOLD)
 
 
 def classify(text):
     """
     Returns (category_dict, event_detail_or_None).
-    Priority: disconnect → events.json → CATEGORIES keywords → general fallback.
+    Priority: disconnect → events.json exact → events.json fuzzy → CATEGORIES keywords → general fallback.
+    Fuzzy matching only runs if no event matched by regex/keywords first.
     """
     lower = text.lower()
 
     if any(kw in lower for kw in DISCONNECT_KEYWORDS):
         return CATEGORIES[0], None
 
-    for event in load_events():
-        if _event_matches(event, lower):
+    events = load_events()
+
+    # Pass 1: regex / keyword matches only
+    for event in events:
+        if _event_matches_exact(event, lower):
+            sev = event.get("severity", "low")
+            event_cat = {
+                "id":    "event",
+                "name":  "🎉 Event",
+                "color": SEVERITY_COLORS.get(sev, 0x9B59B6),
+                "ping":  sev == "high",
+            }
+            return event_cat, event
+
+    # Pass 2: fuzzy only — runs if nothing matched exactly above
+    for event in events:
+        if _event_matches_fuzzy(event, lower):
             sev = event.get("severity", "low")
             event_cat = {
                 "id":    "event",
@@ -520,10 +537,12 @@ def main():
     print(f"  Interval: {config.POLL_INTERVAL}s")
     print("=" * 55)
 
-    last_img_hash  = ""
-    last_event_key = None    # identity of the last event we notified (dedupes countdowns/color shifts)
-    last_change_at = datetime.datetime.now(datetime.timezone.utc)
-    stuck_notified = False
+    last_img_hash       = ""
+    last_event_key      = None   # resets on bar clear; dedupes consecutive same-event fires
+    last_game_event     = None   # last EVENT: that fired; persists through bar clears
+    last_change_at      = datetime.datetime.now(datetime.timezone.utc)
+    stuck_notified      = False
+    event_cooldowns: dict = {}   # non-EVENT: key -> last notified datetime
 
     while True:
         wid, _ = find_window(config.WINDOW_TITLE)
@@ -566,6 +585,14 @@ def main():
             time.sleep(config.POLL_INTERVAL)
             continue
 
+        # Reject garbage captures: require >50% alphanumeric AND at least 3 letter-containing words
+        stripped = text.replace(" ", "")
+        alpha_ratio = sum(c.isalnum() for c in stripped) / len(stripped) if stripped else 0
+        real_words = [w for w in text.split() if any(c.isalpha() for c in w)]
+        if alpha_ratio < 0.5 or len(real_words) < 3:
+            time.sleep(config.POLL_INTERVAL)
+            continue
+
         cat, event_detail = classify(text)
 
         # Event identity, independent of countdown numbers / color shifts in the pixels:
@@ -588,6 +615,22 @@ def main():
             if _fuzzy_ratio(event_key, last_event_key) >= FUZZY_THRESHOLD:
                 time.sleep(config.POLL_INTERVAL)
                 continue
+
+        if event_key.startswith("EVENT:"):
+            # EVENT: entries: no time cooldown — just suppress if same event already sent
+            if event_key == last_game_event:
+                time.sleep(config.POLL_INTERVAL)
+                continue
+            last_game_event = event_key
+        else:
+            # Notif/other entries: short cooldown to absorb brief bar flickers
+            cooldown_secs = getattr(config, "EVENT_COOLDOWN_SECS", 6)
+            last_fired = event_cooldowns.get(event_key)
+            if last_fired and (now - last_fired).total_seconds() < cooldown_secs:
+                time.sleep(config.POLL_INTERVAL)
+                continue
+            event_cooldowns[event_key] = now
+            last_game_event = None  # clear game event when a Notif fires
 
         last_event_key = event_key
         print(f"[{_ts()}] {text[:100]}")
