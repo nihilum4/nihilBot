@@ -175,17 +175,24 @@ def classify(text):
             }
             return event_cat, event
 
-    # Pass 2: fuzzy only — runs if nothing matched exactly above
+    # Pass 2: fuzzy only — pick the highest-ratio match, not the first
+    best_event, best_ratio = None, 0.0
     for event in events:
-        if _event_matches_fuzzy(event, lower):
-            sev = event.get("severity", "low")
-            event_cat = {
-                "id":    "event",
-                "name":  "🎉 Event",
-                "color": SEVERITY_COLORS.get(sev, 0x9B59B6),
-                "ping":  sev == "high",
-            }
-            return event_cat, event
+        effect = event.get("effect", "").lower()
+        if effect:
+            ratio = _fuzzy_ratio(lower, effect)
+            if ratio > best_ratio:
+                best_ratio = ratio
+                best_event = event
+    if best_event and best_ratio >= FUZZY_THRESHOLD:
+        sev = best_event.get("severity", "low")
+        event_cat = {
+            "id":    "event",
+            "name":  "🎉 Event",
+            "color": SEVERITY_COLORS.get(sev, 0x9B59B6),
+            "ping":  sev == "high",
+        }
+        return event_cat, best_event
 
     for cat in CATEGORIES:
         if any(kw in lower for kw in cat["keywords"]):
@@ -442,8 +449,18 @@ def inner_img(img, inset=8):
     return img.crop((inset, inset, w - inset, h - inset))
 
 
+def _preprocess(img):
+    from PIL import ImageEnhance, ImageFilter, ImageOps
+    w, h = img.size
+    img = img.resize((w * 2, h * 2), Image.LANCZOS)
+    img = ImageOps.autocontrast(img, cutoff=2)  # adapts to actual brightness range
+    img = ImageEnhance.Sharpness(img).enhance(2.0)
+    img = img.filter(ImageFilter.SHARPEN)
+    return img
+
+
 def read_text(img):
-    return pytesseract.image_to_string(img, config="--psm 7").strip()
+    return pytesseract.image_to_string(_preprocess(img), config="--psm 7").strip()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -546,6 +563,9 @@ def main():
     last_change_at      = datetime.datetime.now(datetime.timezone.utc)
     stuck_notified      = False
     event_cooldowns: dict = {}   # non-EVENT: key -> last notified datetime
+    last_known_event_active = False  # True once a known event fires; reset when bar clears
+    last_unknown_fired      = False  # True once an unknown fires; reset when bar clears
+    consecutive_empty_reads = 0     # guard against brief OCR blanks resetting active-event state
 
     while True:
         wid, _ = find_window(config.WINDOW_TITLE)
@@ -583,17 +603,26 @@ def main():
 
         text = read_text(img)
         if not text or len(text.strip()) < 4:
-            # Bar cleared or OCR noise (single chars, partial frames) — reset key
-            last_event_key = None
+            # Could be a true bar clear OR a single-frame OCR blank during animation.
+            # Require 3 consecutive empty reads before resetting state so a brief OCR
+            # miss doesn't allow unknowns to fire while the same event is still active.
+            consecutive_empty_reads += 1
+            if consecutive_empty_reads >= 3:
+                last_event_key          = None
+                last_known_event_active = False
+                last_unknown_fired      = False
             time.sleep(config.POLL_INTERVAL)
             continue
 
-        # Reject garbage captures: require >50% alphanumeric AND at least 3 purely-alphabetic words (len>=2)
+        consecutive_empty_reads = 0  # valid text — bar is still populated
+
+        # Reject garbage: >50% alphanumeric, ≥3 alpha words (len≥2), AND ≥2 substantial words (len≥5)
         stripped = text.replace(" ", "")
         alpha_ratio = sum(c.isalnum() for c in stripped) / len(stripped) if stripped else 0
         real_words = [w.strip(_PUNCT) for w in text.split()]
         real_words = [w for w in real_words if w.isalpha() and len(w) >= 2]
-        if alpha_ratio < 0.5 or len(real_words) < 3:
+        long_words = [w for w in real_words if len(w) >= 5]
+        if alpha_ratio < 0.5 or len(real_words) < 3 or len(long_words) < 2:
             time.sleep(config.POLL_INTERVAL)
             continue
 
@@ -634,12 +663,23 @@ def main():
                 time.sleep(config.POLL_INTERVAL)
                 continue
             event_cooldowns[event_key] = now
-            last_game_event = None  # clear game event when a Notif fires
+
+        # Suppress unknown re-fires for the same bar session:
+        #   - known event already identified → all subsequent unknowns are OCR noise
+        #   - unknown already sent → don't spam; wait for bar to clear or OCR to identify it
+        # Known events are never suppressed — if OCR finally identifies after an unknown, it fires.
+        if cat["id"] == "unknown" and (last_known_event_active or last_unknown_fired):
+            time.sleep(config.POLL_INTERVAL)
+            continue
 
         last_event_key = event_key
         print(f"[{_ts()}] {text[:100]}")
         attach = img if cat["id"] == "unknown" else None
         send_notification(text, cat, event_detail, image=attach)
+        if cat["id"] == "unknown":
+            last_unknown_fired = True
+        else:
+            last_known_event_active = True
 
         time.sleep(config.POLL_INTERVAL)
 
