@@ -449,13 +449,19 @@ def inner_img(img, inset=8):
     return img.crop((inset, inset, w - inset, h - inset))
 
 
+_BINARIZE_THRESHOLD = getattr(config, "BINARIZE_THRESHOLD", 140)
+
 def _preprocess(img):
-    from PIL import ImageEnhance, ImageFilter, ImageOps
+    from PIL import ImageChops, ImageEnhance, ImageFilter, ImageOps
     w, h = img.size
-    img = img.resize((w * 2, h * 2), Image.LANCZOS)
-    img = ImageOps.autocontrast(img, cutoff=2)  # adapts to actual brightness range
+    img = img.resize((w * 3, h * 3), Image.LANCZOS)
+    # Max-channel grayscale: keeps colored text (pink, purple, etc.) bright against the dark background.
+    # Standard luminance would darken magenta/pink text to ~100 and risk erasing it at threshold.
+    r, g, b = img.split()
+    img = ImageChops.lighter(ImageChops.lighter(r, g), b)
+    img = ImageOps.autocontrast(img, cutoff=2)
     img = ImageEnhance.Sharpness(img).enhance(2.0)
-    img = img.filter(ImageFilter.SHARPEN)
+    img = img.point(lambda x: 255 if x > _BINARIZE_THRESHOLD else 0)  # background → 0, text → 255
     return img
 
 
