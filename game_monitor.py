@@ -8,11 +8,10 @@ virtual desktop / macOS Space, or the window is minimised.
 Quick start:
   1. Copy config.example.py → config.py and fill in your values
   2. pip install -r requirements.txt          (platform-specific — see file)
-  3. Install Tesseract  https://tesseract-ocr.github.io/tessdoc/Installation.html
-  4. python game_monitor.py --find-crop       (find your crop box)
-  5. python game_monitor.py --test            (test Discord connection)
-  6. python game_monitor.py --test-ocr        (test OCR reads your bar)
-  7. python game_monitor.py                   (run normally)
+  3. python game_monitor.py --find-crop       (find your crop box)
+  4. python game_monitor.py --test            (test Discord connection)
+  5. python game_monitor.py --test-ocr        (test OCR reads your bar)
+  6. python game_monitor.py                   (run normally)
 """
 
 import ctypes
@@ -32,7 +31,6 @@ import platform as _platform
 _here = pathlib.Path(__file__).parent
 
 import requests
-import pytesseract
 from PIL import Image
 
 _PUNCT = string.punctuation
@@ -61,8 +59,15 @@ except ModuleNotFoundError:
     print("Copy config.example.py to config.py and fill in your values.")
     sys.exit(1)
 
-if hasattr(config, "TESSERACT_PATH"):
-    pytesseract.pytesseract.tesseract_cmd = config.TESSERACT_PATH
+_easyocr_reader = None
+def _get_easyocr_reader():
+    global _easyocr_reader
+    if _easyocr_reader is None:
+        import easyocr
+        print("[OCR] Loading EasyOCR model (first run only)...")
+        _easyocr_reader = easyocr.Reader(["en"], gpu=False, verbose=False)
+        print("[OCR] EasyOCR ready.")
+    return _easyocr_reader
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -362,17 +367,23 @@ def _find_window_mac(partial_title):
         Quartz.kCGWindowListOptionAll | Quartz.kCGWindowListExcludeDesktopElements,
         Quartz.kCGNullWindowID,
     )
-    best, best_area = None, 0
+    key = partial_title.lower()
+    # Collect owner-name matches and tab-title-only matches separately.
+    # Owner matches (the app itself is the game) beat tab-title matches (a browser with the game open).
+    owner_best, owner_area = None, 0
+    title_best, title_area = None, 0
     for w in (wlist or []):
         owner = w.get("kCGWindowOwnerName", "") or ""
         name  = w.get("kCGWindowName",      "") or ""
-        if partial_title.lower() in owner.lower() or partial_title.lower() in name.lower():
-            b    = w.get("kCGWindowBounds", {})
-            area = int(b.get("Width", 0)) * int(b.get("Height", 0))
-            if area > best_area:
-                best      = (w.get("kCGWindowNumber"), owner or name)
-                best_area = area
-    return best if best else (None, None)
+        b     = w.get("kCGWindowBounds", {})
+        area  = int(b.get("Width", 0)) * int(b.get("Height", 0))
+        if key in owner.lower():
+            if area > owner_area:
+                owner_best, owner_area = (w.get("kCGWindowNumber"), owner or name), area
+        elif key in name.lower():
+            if area > title_area:
+                title_best, title_area = (w.get("kCGWindowNumber"), owner or name), area
+    return owner_best or title_best or (None, None)
 
 
 def _capture_window_mac(wid, crop):
@@ -449,24 +460,23 @@ def inner_img(img, inset=8):
     return img.crop((inset, inset, w - inset, h - inset))
 
 
-_BINARIZE_THRESHOLD = getattr(config, "BINARIZE_THRESHOLD", 140)
-
 def _preprocess(img):
-    from PIL import ImageChops, ImageEnhance, ImageFilter, ImageOps
+    from PIL import ImageEnhance
     w, h = img.size
-    img = img.resize((w * 3, h * 3), Image.LANCZOS)
-    # Max-channel grayscale: keeps colored text (pink, purple, etc.) bright against the dark background.
-    # Standard luminance would darken magenta/pink text to ~100 and risk erasing it at threshold.
-    r, g, b = img.split()
-    img = ImageChops.lighter(ImageChops.lighter(r, g), b)
-    img = ImageOps.autocontrast(img, cutoff=2)
-    img = ImageEnhance.Sharpness(img).enhance(2.0)
-    img = img.point(lambda x: 255 if x > _BINARIZE_THRESHOLD else 0)  # background → 0, text → 255
+    img = img.resize((w * 2, h * 2), Image.LANCZOS)
+    img = ImageEnhance.Sharpness(img).enhance(1.5)
     return img
 
 
 def read_text(img):
-    return pytesseract.image_to_string(_preprocess(img), config="--psm 7").strip()
+    import numpy as np
+    arr = np.array(_preprocess(img))
+    reader = _get_easyocr_reader()
+    results = reader.readtext(arr, detail=1, paragraph=False)
+    if not results:
+        return ""
+    results.sort(key=lambda r: r[0][0][0])
+    return " ".join(r[1] for r in results).strip()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -623,12 +633,16 @@ def main():
         consecutive_empty_reads = 0  # valid text — bar is still populated
 
         # Reject garbage: >50% alphanumeric, ≥3 alpha words (len≥2), AND ≥2 substantial words (len≥5)
+        # "___ Appears" messages are short by design — lower thresholds to 2 words / 1 long word.
         stripped = text.replace(" ", "")
         alpha_ratio = sum(c.isalnum() for c in stripped) / len(stripped) if stripped else 0
         real_words = [w.strip(_PUNCT) for w in text.split()]
         real_words = [w for w in real_words if w.isalpha() and len(w) >= 2]
         long_words = [w for w in real_words if len(w) >= 5]
-        if alpha_ratio < 0.5 or len(real_words) < 3 or len(long_words) < 2:
+        is_appears_msg = "appears" in text.lower()
+        min_words = 2 if is_appears_msg else 3
+        min_long  = 1 if is_appears_msg else 2
+        if alpha_ratio < 0.5 or len(real_words) < min_words or len(long_words) < min_long:
             time.sleep(config.POLL_INTERVAL)
             continue
 
@@ -674,7 +688,9 @@ def main():
         #   - known event already identified → all subsequent unknowns are OCR noise
         #   - unknown already sent → don't spam; wait for bar to clear or OCR to identify it
         # Known events are never suppressed — if OCR finally identifies after an unknown, it fires.
-        if cat["id"] == "unknown" and (last_known_event_active or last_unknown_fired):
+        # "___ Appears" messages are always allowed through — they're a distinct bar state,
+        # not OCR noise from an already-identified event.
+        if cat["id"] == "unknown" and not is_appears_msg and (last_known_event_active or last_unknown_fired):
             time.sleep(config.POLL_INTERVAL)
             continue
 

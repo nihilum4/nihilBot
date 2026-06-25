@@ -1,85 +1,142 @@
 # nihilBot
 
-Watches the notification bar in REx:R and sends Discord DM alerts. Works when the game is on a different virtual desktop or you're afk, unless the screen closes.
+Watches the notification bar in REx:R and sends Discord DM alerts. Works when the game is on a different virtual desktop or you're AFK, as long as the screen isn't closed.
 
-## Features
+## What it does
 
-- Captures the game window using the Windows `PrintWindow` API, no need for the game to be visible or in focus.
-- OCR reads the notification bar text with Tesseract
-- Classifies notifications: named events, important alerts, resets, disconnects, general
-- Named events defined in `events.json` — add as many as you want without touching code
-- Discord DM with colour-coded embeds and optional ping for high-priority alerts
-- Disconnect detection — alerts you if the bar hasn't changed in N minutes (likely kicked for inactivity)
+- Captures the game window in the background — game doesn't need to be visible or focused
+- Reads the notification bar text with OCR (Tesseract)
+- Sends you a Discord DM with colour-coded alerts for events, resets, and disconnects
+- Pings you for high-priority alerts
+- Alerts you if the bar hasn't changed in a while (likely disconnected/kicked)
+
+---
 
 ## Requirements
 
-- Windows 10/11
-- Python 3.8+
-- [Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki)
+- Windows 10 or 11
+- Python 3.8 or newer
 - A Discord account
 
-## Setup
+---
 
-### 1. Clone and install
+## Installation
 
-```bash
-git clone https://github.com/YOUR_USERNAME/game-monitor.git
-cd game-monitor
+### Step 1 — Install Python
+
+1. Go to [python.org/downloads](https://www.python.org/downloads/) and download the latest version
+2. Run the installer
+3. **Important:** On the first screen, check the box that says **"Add Python to PATH"** before clicking Install
+
+To verify it worked, open **Command Prompt** (press `Win + R`, type `cmd`, press Enter) and run:
+```
+python --version
+```
+You should see something like `Python 3.12.x`.
+
+---
+
+### Step 2 — Download nihilBot
+
+**Option A — with Git (recommended):**
+
+If you have Git installed, open Command Prompt and run:
+```
+git clone https://github.com/Shadewing42/nihilBot1.git
+cd nihilBot1
+```
+
+**Option B — without Git:**
+
+1. Go to the GitHub page for this project
+2. Click the green **Code** button → **Download ZIP**
+3. Extract the ZIP somewhere (e.g. your Desktop)
+4. Open Command Prompt and navigate to the folder:
+   ```
+   cd C:\Users\YourName\Desktop\nihilBot1
+   ```
+   Replace `YourName` with your actual Windows username.
+
+---
+
+### Step 3 — Install Python packages
+
+In Command Prompt, while inside the nihilBot1 folder, run:
+```
 pip install -r requirements.txt
 ```
 
-Install Tesseract from https://github.com/UB-Mannheim/tesseract/wiki
+---
 
-### 2. Create your config
+### Step 4 — Create your config file
 
-```bash
-cp config.example.py config.py
+In the nihilBot1 folder, find the file called `config.example.py`. Make a copy of it and rename the copy to `config.py`.
+
+You can do this in File Explorer (right-click → Copy, then paste and rename), or in Command Prompt:
+```
+copy config.example.py config.py
 ```
 
-Open `config.py` and fill in:
+Open `config.py` in Notepad or any text editor and fill in these values:
 
-| Setting | What it is |
+| Setting | What to put |
 |---|---|
-| `WINDOW_TITLE` | Part of your game's window title |
-| `CROP_BOX` | Pixel region of the notification bar (see step 4) |
-| `BOT_TOKEN` | Your Discord bot token |
-| `YOUR_DISCORD_USER_ID` | Your Discord user ID |
+| `WINDOW_TITLE` | Part of the game's window title (check the taskbar) |
+| `CROP_BOX` | Pixel region of the notification bar — see Step 6 below |
+| `BOT_TOKEN` | Your Discord bot token — see Step 5 below |
+| `YOUR_DISCORD_USER_ID` | Your Discord user ID — see Step 5 below |
 
-### 3. Create a Discord bot
+---
 
-1. Go to [discord.com/developers/applications](https://discord.com/developers/applications)
-2. New Application → Bot → Reset Token → copy the token
-3. Enable **Message Content Intent** on the Bot page
-4. OAuth2 → URL Generator → scope `bot` + permission `Send Messages` → open the URL → add bot to a server you're in
-5. Get your user ID: Discord Settings → Advanced → Developer Mode → right-click your name → Copy ID
+### Step 5 — Set up a Discord bot
 
-### 4. Find your crop box
+1. Go to [discord.com/developers/applications](https://discord.com/developers/applications) and log in
+2. Click **New Application**, give it any name, then go to the **Bot** tab on the left
+3. Click **Reset Token**, confirm, then copy the token — paste it as your `BOT_TOKEN` in `config.py`
+4. On the same Bot page, scroll down to **Privileged Gateway Intents** and enable **Message Content Intent**
+5. Go to **OAuth2 → URL Generator**, tick the `bot` scope, then tick the `Send Messages` permission
+6. Copy the generated URL, open it in your browser, and add the bot to a server you're in
+7. **Get your user ID:** Open Discord → Settings → Advanced → turn on **Developer Mode** → close Settings → right-click your own name anywhere → **Copy User ID** — paste that number as `YOUR_DISCORD_USER_ID` in `config.py`
 
-```bash
+---
+
+### Step 6 — Find your crop box
+
+**Everyone needs to do this step individually.** The `CROP_BOX` coordinates depend on your monitor resolution and game window size, so the values from someone else's config likely won't work.
+
+Make sure the game is open, then run:
+```
 python game_monitor.py --find-crop
 ```
 
-This saves `debug_capture.png` — a full screenshot of the game window. Open it, note the pixel coordinates of your notification bar, and update `CROP_BOX` in `config.py`.
+This saves a file called `debug_capture.png` in the nihilBot1 folder — open it. It's a screenshot of the game window. Look at where the notification bar is and note the pixel coordinates of its edges (top, bottom, left, right). Update `CROP_BOX` in `config.py` with those values in the format `(left, top, right, bottom)`.
 
-### 5. Test Discord
+---
 
-```bash
+### Step 7 — Test Discord
+
+```
 python game_monitor.py --test
 ```
 
-Check your Discord DMs for three test messages.
+Check your Discord DMs — you should receive three test messages with different colours.
 
-### 6. Test OCR
+---
 
-```bash
+### Step 8 — Test OCR
+
+With the game open and something visible in the notification bar, run:
+```
 python game_monitor.py --test-ocr
 ```
 
-Make sure the game is open and showing something in the bar. The command prints what Tesseract reads and saves `debug_bar.png`.
+This prints what the OCR is reading and saves `debug_bar.png`. If the text looks garbled, your `CROP_BOX` may not be capturing the bar correctly — open `debug_bar.png` and compare it to what you see in-game.
 
-### 7. Add your events
+---
 
-Edit `events.json` — add an entry for each named event in your game:
+### Step 9 — Add your events (optional)
+
+Open `events.json` and add an entry for each named event you want to track:
 
 ```json
 {
@@ -90,34 +147,42 @@ Edit `events.json` — add an entry for each named event in your game:
 }
 ```
 
-Severity levels: `high` (red, pings you), `medium` (yellow), `low` (purple)
+Severity: `high` = red + pings you, `medium` = yellow, `low` = purple
 
-### 8. Run
+---
 
-```bash
+### Step 10 — Run it
+
+```
 python game_monitor.py
 ```
 
-Leave it running in the background. It logs every change to the terminal and sends a Discord DM to your phone.
+Leave the Command Prompt window open in the background. It logs every change to the terminal and sends Discord DMs to your phone.
+
+---
 
 ## Notification types
 
 | Type | Colour | Ping |
 |---|---|---|
-| 🔌 Disconnected | Red | Yes |
-| ⚠️ Important | Red | Yes |
-| 🎉 Event (high severity) | Red | Yes |
-| 🎉 Event (medium severity) | Yellow | No |
-| 🎉 Event (low severity) | Purple | No |
-| 🔄 Reset | Orange | No |
-| 📢 General | Gray | No |
+| Disconnected | Red | Yes |
+| Important | Red | Yes |
+| Event (high) | Red | Yes |
+| Event (medium) | Yellow | No |
+| Event (low) | Purple | No |
+| Reset | Orange | No |
+| General | Gray | No |
+
+---
 
 ## Troubleshooting
 
-**Window not found** — run `--find-crop` to list all visible windows and find the exact title.
+**"python is not recognized"** — Python isn't on your PATH. Reinstall Python and make sure to check "Add Python to PATH" on the first screen.
 
-**OCR reads garbage** — run `--test-ocr` and inspect `debug_bar.png`. Make sure `CROP_BOX` captures the full bar. Larger text OCRs better — try windowed mode if the window is small.
+**Window not found** — run `--find-crop` — it lists all visible windows so you can find the exact title to use for `WINDOW_TITLE`.
 
-**Blank capture** — some games using hardware acceleration (DirectX/Vulkan fullscreen exclusive) block `PrintWindow`. Switch to **borderless windowed** mode.
+**OCR reads garbage** — run `--test-ocr` and open `debug_bar.png`. Make sure `CROP_BOX` fully covers the notification bar. The game running in windowed mode (not fullscreen) usually gives better results.
 
-**Discord 401 error** — your bot token is wrong or was reset. Get a fresh one from the developer portal.
+**Blank/black capture** — some games using fullscreen exclusive mode (DirectX/Vulkan) block the capture. Switch the game to **borderless windowed** mode.
+
+**Discord 401 error** — your bot token is wrong or has been reset. Go back to the Discord developer portal, reset the token, and update `config.py`.
